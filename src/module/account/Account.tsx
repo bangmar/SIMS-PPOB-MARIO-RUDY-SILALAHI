@@ -122,7 +122,7 @@ const AccountPage: FC = (): ReactElement => {
 			<section className='px-4 md:px-12 lg:px-20 grid place-items-center'>
 				<section className='px-6 py-8 shadow-sm flex flex-col gap-6 md:gap-10 w-full md:min-w-[520px] md:max-w-[560px]'>
 					<section className='grid place-items-center'>
-						<section className='bg-gray-100 border-2 border-gray-100 h-28 w-28 relative rounded-full'>
+						<section className='bg-gray-100 border-2 border-gray-100 h-28 w-28 relative rounded-full -z-10'>
 							{data?.profile_image &&
 							data?.profile_image !== defaultImageUrl ? (
 								<img

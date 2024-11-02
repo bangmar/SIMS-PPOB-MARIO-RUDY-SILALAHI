@@ -46,7 +46,7 @@ const Navbar = () => {
 			</button>
 
 			<section
-				className={`fixed top-0 right-0 h-full bg-white shadow-lg w-2/3 max-w-xs transition-transform ease-in-out duration-200 transform ${
+				className={`fixed z-50 top-0 right-0 h-full bg-white shadow-lg w-2/3 max-w-xs transition-transform ease-in-out duration-200 transform ${
 					isMenuOpen ? "translate-x-0" : "translate-x-full"
 				} md:hidden`}>
 				<div className='flex flex-col items-start p-6'>
