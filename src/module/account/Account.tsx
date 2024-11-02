@@ -1,4 +1,4 @@
-import { FC, ReactElement, useEffect, useRef } from "react";
+import { FC, ReactElement, useEffect } from "react";
 import Navbar from "../../components/navbar/Navbar";
 import { MdAlternateEmail } from "react-icons/md";
 import Button from "../../components/button/Button";
@@ -24,7 +24,6 @@ const AccountPage: FC = (): ReactElement => {
 	const navigate = useNavigate();
 	const { mutate: updateImage } = useUpdateProfileImage();
 	const customEnqueueSnackbar = useCustomSnackbar();
-	const fileInputRef = useRef<HTMLInputElement | null>(null);
 
 	type UpdateProfileValidationSchema = z.infer<
 		typeof updateProfileValidationSchema
@@ -105,9 +104,6 @@ const AccountPage: FC = (): ReactElement => {
 		}
 	};
 
-	const handlePencilClick = () => {
-		fileInputRef.current?.click();
-	};
 	const dispatch = useDispatch();
 
 	const handleLogout = () => {
@@ -121,8 +117,8 @@ const AccountPage: FC = (): ReactElement => {
 			<Navbar />
 			<section className='px-4 md:px-12 lg:px-20 grid place-items-center'>
 				<section className='px-6 py-8 shadow-sm flex flex-col gap-6 md:gap-10 w-full md:min-w-[520px] md:max-w-[560px]'>
-					<section className='grid place-items-center'>
-						<section className='bg-gray-100 border-2 border-gray-100 h-28 w-28 relative rounded-full -z-10'>
+					<section className='grid place-items-center '>
+						<section className='bg-gray-100 border-2 border-gray-100 h-28 w-28 relative rounded-full z-10'>
 							{data?.profile_image &&
 							data?.profile_image !== defaultImageUrl ? (
 								<img
@@ -139,14 +135,14 @@ const AccountPage: FC = (): ReactElement => {
 									name={`${data?.first_name || ""} ${data?.last_name || ""}`}
 								/>
 							)}
-							<section
-								className='h-7 w-7 absolute bottom-0 right-1 rounded-full grid place-items-center bg-gray-100 border-2 border-gray-50 text-gray-500 text-lg cursor-pointer'
-								onClick={handlePencilClick}>
+							<label
+								htmlFor='image'
+								className='h-7 w-7 absolute z-10 bottom-0 right-1 rounded-full grid place-items-center bg-gray-100 hover:bg-gray-200 transition-all ease-in-out duration-200 border-2 border-gray-50 text-gray-500 text-lg cursor-pointer'>
 								<GoPencil />
-							</section>
+							</label>
 							<input
 								type='file'
-								ref={fileInputRef}
+								id='image'
 								className='hidden'
 								accept='image/png, image/jpeg'
 								onChange={handleImageChange}

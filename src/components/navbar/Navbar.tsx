@@ -13,7 +13,7 @@ const Navbar = () => {
 	};
 
 	return (
-		<nav className='bg-white sticky top-0 border-b-[1px] border-gray-200 px-4 md:px-12 lg:px-20 py-4 flex justify-between items-center'>
+		<nav className='bg-white sticky top-0 border-b-[1px] border-gray-200 px-4 md:px-12 lg:px-20 py-4 flex justify-between items-center z-50'>
 			<Link to={"/"} className='flex gap-2 items-center'>
 				<section className='h-7 w-7'>
 					<img
@@ -46,8 +46,8 @@ const Navbar = () => {
 			</button>
 
 			<section
-				className={`fixed z-50 top-0 right-0 h-full bg-white shadow-lg w-2/3 max-w-xs transition-transform ease-in-out duration-200 transform ${
-					isMenuOpen ? "translate-x-0" : "translate-x-full"
+				className={`fixed top-0 right-0 h-full bg-white shadow-lg w-2/3 max-w-xs transition-transform ease-in-out duration-200 transform ${
+					isMenuOpen ? "translate-x-0 z-50" : "translate-x-full"
 				} md:hidden`}>
 				<div className='flex flex-col items-start p-6'>
 					<div className='flex justify-between items-center w-full mb-8'>
