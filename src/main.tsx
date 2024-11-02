@@ -5,19 +5,17 @@ import App from "./App.tsx";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import LoginPage from "./module/auth/login/Login.tsx";
 import RegisterPage from "./module/auth/register/Register.tsx";
-import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
-import { SnackbarProvider } from "notistack";
-import { Provider } from "react-redux";
-import store from "./store/store.ts";
 import TopUpPage from "./module/top-up/TopUp.tsx";
 import TransactionHistory from "./module/transaction-history/TransactionHistory.tsx";
 import AccountPage from "./module/account/Account.tsx";
 
+import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+import { SnackbarProvider } from "notistack";
+import { Provider } from "react-redux";
+import store from "./store/store.ts";
+import ProtectedRoute from "./ProtectedRoute.tsx";
+
 const router = createBrowserRouter([
-	{
-		path: "/",
-		element: <App />,
-	},
 	{
 		path: "/auth/login",
 		element: <LoginPage />,
@@ -27,16 +25,25 @@ const router = createBrowserRouter([
 		element: <RegisterPage />,
 	},
 	{
-		path: "/top-up",
-		element: <TopUpPage />,
-	},
-	{
-		path: "/transaction",
-		element: <TransactionHistory />,
-	},
-	{
-		path: "/account",
-		element: <AccountPage />,
+		element: <ProtectedRoute />,
+		children: [
+			{
+				path: "/",
+				element: <App />,
+			},
+			{
+				path: "/top-up",
+				element: <TopUpPage />,
+			},
+			{
+				path: "/transaction",
+				element: <TransactionHistory />,
+			},
+			{
+				path: "/account",
+				element: <AccountPage />,
+			},
+		],
 	},
 ]);
 
